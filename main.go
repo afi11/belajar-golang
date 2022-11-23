@@ -261,6 +261,20 @@ outerLoop:
 	// Property public & private ada folder libary
 	library.KatakanHallo()
 	library.UcapkanSelamatMalam("Malam Mukidi")
+
+	// Inteface
+	var bangunDatar hitung
+
+	bangunDatar = persegi{10.0}
+	fmt.Println("===== persegi")
+	fmt.Println("luas      :", bangunDatar.luas())
+	fmt.Println("keliling  :", bangunDatar.keliling())
+
+	bangunDatar = lingkaran{14.0}
+	fmt.Println("===== lingkaran")
+	fmt.Println("luas      :", bangunDatar.luas())
+	fmt.Println("keliling  :", bangunDatar.keliling())
+	fmt.Println("jari-jari :", bangunDatar.(lingkaran).jariJari())
 }
 
 // contoh fungsi
@@ -315,4 +329,38 @@ func (s student) changeName1(name string) {
 func (s *student) changeName2(name string) {
 	fmt.Println("---> on changeName2, name changed to", name)
 	s.name = name
+}
+
+// Interface
+type hitung interface {
+	luas() float64
+	keliling() float64
+}
+
+type lingkaran struct {
+	diameter float64
+}
+
+func (l lingkaran) jariJari() float64 {
+	return l.diameter / 2
+}
+
+func (l lingkaran) luas() float64 {
+	return math.Pi * math.Pow(l.jariJari(), 2)
+}
+
+func (l lingkaran) keliling() float64 {
+	return math.Pi * l.diameter
+}
+
+type persegi struct {
+	sisi float64
+}
+
+func (p persegi) luas() float64 {
+	return math.Pow(p.sisi, 2)
+}
+
+func (p persegi) keliling() float64 {
+	return p.sisi * 4
 }
