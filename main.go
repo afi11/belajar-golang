@@ -150,5 +150,44 @@ outerLoop:
 	fmt.Println(arrayBaru)
 
 	// map
+	var chicken = map[string]int{
+		"januari": 1,
+		"febuari": 2,
+		"maret":   3,
+		"april":   4,
+	}
+
+	// tambah item baru
+	chicken["mei"] = 5
+
+	// tampilkan
+	for key, val := range chicken {
+		fmt.Println(key, "\t", val)
+	}
+
+	// delete item
+	delete(chicken, "mei")
+	fmt.Println(len(chicken))
+
+	// Deteksi ada array
+	var newchicken = map[string]int{"januari": 50, "februari": 40}
+	var value, isExist = newchicken["mei"]
+
+	if isExist {
+		fmt.Println(value)
+	} else {
+		fmt.Println("item is not exists")
+	}
+
+	// kombinasi map & slice
+	var chickens = []map[string]string{
+		map[string]string{"name": "chicken blue", "gender": "male"},
+		map[string]string{"name": "chicken red", "gender": "male"},
+		map[string]string{"name": "chicken yellow", "gender": "female"},
+	}
+
+	for _, chicken := range chickens {
+		fmt.Println(chicken["gender"], chicken["name"])
+	}
 
 }
