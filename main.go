@@ -237,6 +237,26 @@ outerLoop:
 	fmt.Println("student 2 :", s2.name)
 	fmt.Println("student 3 :", s3.name)
 
+	// Method
+	// Penerapan dari struct student
+	var s4 = student{"john wick", 21}
+	s4.sayHello()
+
+	var name = s4.getNameAt(2)
+	fmt.Println("nama panggilan :", name)
+
+	var s5 = student{"john wick", 21}
+	fmt.Println("s1 before", s5.name)
+	// john wick
+
+	s5.changeName1("jason bourne")
+	fmt.Println("s5 after changeName1", s5.name)
+	// john wick
+
+	s5.changeName2("ethan hunt")
+	fmt.Println("s5 after changeName2", s5.name)
+	// ethan hunt
+
 }
 
 // contoh fungsi
@@ -271,4 +291,24 @@ func filter(data []string, callback func(string) bool) []string {
 type student struct {
 	name  string
 	grade int
+}
+
+// contoh method, penerapan dari struct student
+func (s student) sayHello() {
+	fmt.Println("halo", s.name)
+}
+
+func (s student) getNameAt(i int) string {
+	return strings.Split(s.name, " ")[i-1]
+}
+
+// method pointer
+func (s student) changeName1(name string) {
+	fmt.Println("---> on changeName1, name changed to", name)
+	s.name = name
+}
+
+func (s *student) changeName2(name string) {
+	fmt.Println("---> on changeName2, name changed to", name)
+	s.name = name
 }
