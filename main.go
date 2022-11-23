@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+	"math/rand"
+	"strings"
+)
 
 func main() {
 	fmt.Println("Hello World")
@@ -190,4 +195,56 @@ outerLoop:
 		fmt.Println(chicken["gender"], chicken["name"])
 	}
 
+	// Fungsi
+	radomNumber := randomWithRange(10, 20)
+	fmt.Println("Angka random ", radomNumber)
+
+	area, circumference := hitungSupayaBenar(15)
+	fmt.Println("Area ", area)
+	fmt.Println("Circumference ", circumference)
+
+	var orang2 = []string{"wick", "jason", "ethan"}
+	var dataContains0 = filter(orang2, func(each string) bool {
+		return strings.Contains(each, "o")
+	})
+	var dataLenght5 = filter(orang2, func(each string) bool {
+		return len(each) == 5
+	})
+
+	fmt.Println("data asli \t\t:", orang2)
+	// data asli : [wick jason ethan]
+
+	fmt.Println("filter ada huruf \"o\"\t:", dataContains0)
+	// filter ada huruf "o" : [jason]
+
+	fmt.Println("filter jumlah huruf \"5\"\t:", dataLenght5)
+	// filter jumlah huruf "5" : [jason ethan]
+}
+
+// contoh fungsi
+func randomWithRange(min, max int) int {
+	var value = rand.Int()%(max-min+1) + min
+	return value
+}
+
+// multiple return
+func hitungSupayaBenar(d float64) (float64, float64) {
+	// hitung luas
+	var area = math.Pi * math.Pow(d/2, 2)
+	// hitung keliling
+	var circumference = math.Pi * d
+
+	// kembalikan 2 nilai
+	return area, circumference
+}
+
+// fungsi sebagai parameter
+func filter(data []string, callback func(string) bool) []string {
+	var result []string
+	for _, each := range data {
+		if filtered := callback(each); filtered {
+			result = append(result, each)
+		}
+	}
+	return result
 }
