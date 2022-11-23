@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"project-pertama/library"
 	"strings"
 )
 
@@ -257,6 +258,9 @@ outerLoop:
 	fmt.Println("s5 after changeName2", s5.name)
 	// ethan hunt
 
+	// Property public & private ada folder libary
+	library.KatakanHallo()
+	library.UcapkanSelamatMalam("Malam Mukidi")
 }
 
 // contoh fungsi
