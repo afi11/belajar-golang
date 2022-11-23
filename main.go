@@ -219,6 +219,24 @@ outerLoop:
 
 	fmt.Println("filter jumlah huruf \"5\"\t:", dataLenght5)
 	// filter jumlah huruf "5" : [jason ethan]
+
+	// Penerapan strunct
+	// inisaisi di ada dibawah
+	var s1 = student{}
+	s1.name = "mukidi"
+	s1.grade = 18
+
+	fmt.Println("name  :", s1.name)
+	fmt.Println("grade :", s1.grade)
+
+	var s2 = student{"ethan", 2}
+
+	var s3 = student{name: "jason"}
+
+	fmt.Println("student 1 :", s1.name)
+	fmt.Println("student 2 :", s2.name)
+	fmt.Println("student 3 :", s3.name)
+
 }
 
 // contoh fungsi
@@ -247,4 +265,10 @@ func filter(data []string, callback func(string) bool) []string {
 		}
 	}
 	return result
+}
+
+// contoh struct
+type student struct {
+	name  string
+	grade int
 }
