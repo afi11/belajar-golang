@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"project-pertama/library"
 	"runtime"
+	"strconv"
 	"strings"
 )
 
@@ -286,6 +287,36 @@ outerLoop:
 	var input string
 	fmt.Scanln(&input)
 
+	// Konversi Tipe Data
+	// strconv.Atoi() = string ke int
+	var str = "1234"
+	var num, err = strconv.Atoi(str)
+
+	if err == nil {
+		fmt.Println(num)
+	}
+
+	// strconv.Itoa() = int ke string
+	var num2 = 124
+	var str2 = strconv.Itoa(num2)
+
+	fmt.Println(str2)
+
+	// strconv.ParseInt() = string ke int (non desimal)
+	var str3 = "1234"
+	var num3, err3 = strconv.ParseInt(str3, 10, 64)
+
+	if err3 == nil {
+		fmt.Println(num3)
+	}
+
+	// strconv.ParseFloat() = string ke float
+	var str4 = "24.12"
+	var num4, err4 = strconv.ParseFloat(str4, 32)
+
+	if err4 == nil {
+		fmt.Println(num4) // 24.1200008392334
+	}
 }
 
 // contoh fungsi
