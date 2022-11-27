@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/base64"
 	"fmt"
 	"math"
 	"math/rand"
@@ -317,6 +318,30 @@ outerLoop:
 	if err4 == nil {
 		fmt.Println(num4) // 24.1200008392334
 	}
+
+	// Encode - Decode Base64
+	var contohEnDe = "mukidi sayang kamu"
+
+	var encoded = make([]byte, base64.StdEncoding.EncodedLen(len(contohEnDe)))
+	base64.StdEncoding.Encode(encoded, []byte(contohEnDe))
+	var encodedString = string(encoded)
+	fmt.Println(encodedString)
+
+	var decoded = make([]byte, base64.StdEncoding.DecodedLen(len(encoded)))
+	var _, err5 = base64.StdEncoding.Decode(decoded, encoded)
+	if err5 != nil {
+		fmt.Println(err.Error())
+	}
+	var decodedString = string(decoded)
+	fmt.Println(decodedString)
+
+	var contohURL = "https://kalipare.com/"
+	var encodedStrigURL = base64.URLEncoding.EncodeToString([]byte(contohURL))
+	fmt.Println(encodedStrigURL)
+
+	var decodedByte, _ = base64.URLEncoding.DecodeString(encodedStrigURL)
+	var decodedString2 = string(decodedByte)
+	fmt.Println(decodedString2)
 }
 
 // contoh fungsi
