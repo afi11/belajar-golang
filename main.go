@@ -319,6 +319,13 @@ outerLoop:
 		fmt.Println(num4) // 24.1200008392334
 	}
 
+	// Konversi Data Menggunakan Teknik Casting
+	var a float64 = float64(24)
+	fmt.Println(a) // 24
+
+	var b int32 = int32(24.00)
+	fmt.Println(b) // 24
+
 	// Encode - Decode Base64
 	var contohEnDe = "mukidi sayang kamu"
 
