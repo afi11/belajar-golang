@@ -5,6 +5,7 @@ import (
 	"math"
 	"math/rand"
 	"project-pertama/library"
+	"runtime"
 	"strings"
 )
 
@@ -275,6 +276,16 @@ outerLoop:
 	fmt.Println("luas      :", bangunDatar.luas())
 	fmt.Println("keliling  :", bangunDatar.keliling())
 	fmt.Println("jari-jari :", bangunDatar.(lingkaran).jariJari())
+
+	// Goroutine = mini thread
+	runtime.GOMAXPROCS(2)
+
+	go print(5, "hallo")
+	print(5, "apa kabar")
+
+	var input string
+	fmt.Scanln(&input)
+
 }
 
 // contoh fungsi
@@ -363,4 +374,11 @@ func (p persegi) luas() float64 {
 
 func (p persegi) keliling() float64 {
 	return p.sisi * 4
+}
+
+// fungsi menapilkan Goroutine
+func print(till int, message string) {
+	for i := 0; i < till; i++ {
+		fmt.Println("Hallo ", message)
+	}
 }
