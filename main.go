@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/sha1"
 	"encoding/base64"
 	"fmt"
 	"math"
@@ -9,6 +10,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -349,6 +351,26 @@ outerLoop:
 	var decodedByte, _ = base64.URLEncoding.DecodeString(encodedStrigURL)
 	var decodedString2 = string(decodedByte)
 	fmt.Println(decodedString2)
+
+	// Hash SHA1
+	var textHash = "Aku Sayang Kamu"
+	var sha = sha1.New()
+	sha.Write([]byte(textHash))
+	var encrypted = sha.Sum(nil)
+	var encryptedString = fmt.Sprintf("%x", encrypted)
+	fmt.Println(encryptedString)
+
+	// Metode Salting Pada Hash SHA1
+	var hashed1, salt1 = doHashUsingSalt(textHash)
+	fmt.Printf("hashed 1 : %s\n\n", hashed1)
+
+	var hashed2, salt2 = doHashUsingSalt(textHash)
+	fmt.Printf("hashed 2 : %s\n\n", hashed2)
+
+	var hashed3, salt3 = doHashUsingSalt(textHash)
+	fmt.Printf("hashed 3 : %s\n\n", hashed3)
+
+	_, _, _ = salt1, salt2, salt3
 }
 
 // contoh fungsi
@@ -444,4 +466,16 @@ func print(till int, message string) {
 	for i := 0; i < till; i++ {
 		fmt.Println("Hallo ", message)
 	}
+}
+
+// fungsi Metode Salting Pada Hash SHA1
+func doHashUsingSalt(text string) (string, string) {
+	var salt = fmt.Sprintf("%d", time.Now().UnixNano())
+	var saltedText = fmt.Sprintf("text: '%s', salt: %s", text, salt)
+	fmt.Println(saltedText)
+	var sha = sha1.New()
+	sha.Write([]byte(saltedText))
+	var encrypted = sha.Sum(nil)
+
+	return fmt.Sprintf("%x", encrypted), salt
 }
