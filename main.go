@@ -13,6 +13,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	gubrak "github.com/novalagung/gubrak/v2"
 )
 
 func main() {
@@ -380,6 +382,8 @@ outerLoop:
 	writeFile(path)
 	readFile(path)
 	deleteFile(path)
+
+	fmt.Println(gubrak.RandomInt(10, 20))
 }
 
 // contoh fungsi
