@@ -15,7 +15,7 @@ type student struct {
 }
 
 func connect() (*sql.DB, error) {
-	db, err := sql.Open("mysql", "root:@11ForEverything@tcp(localhost:3306)/db_golang_cobacoba")
+	db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/db_golang_cobacoba")
 	// Pengertian
 	// 	user:password@tcp(host:port)/dbname
 	// user@tcp(host:port)/dbname
